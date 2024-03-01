@@ -61,4 +61,10 @@ export class ServiceController {
 
     return res;
   }
+  //FIXME:Delete
+  @Delete()
+  async removeAll() {
+    const res = await this.serviceService.deleteAll();
+    return res.status;
+  }
 }

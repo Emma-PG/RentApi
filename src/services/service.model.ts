@@ -9,6 +9,7 @@ export const ServiceSchema = new mongoose.Schema<Service>({
       dayOfWeek: { type: Number, required: true },
       startTime: { type: String, required: true },
       endTime: { type: String, required: true },
+      isBooked: { type: Boolean, default: false },
     },
   ],
 });
