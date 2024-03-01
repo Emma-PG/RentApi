@@ -23,21 +23,9 @@ export class ServiceController {
   @Post()
   async insertService(
     @Body()
-    body: {
-      title: string;
-      description: string;
-      price: number;
-      availability: { dayOfWeek: number; startTime: string; endTime: string };
-    },
+    body: Service,
   ) {
-    const { title, description, price, availability } = body;
-    const generatedBooking = await this.serviceService.addService(
-      title,
-      description,
-      price,
-      availability,
-    );
-
+    const generatedBooking = await this.serviceService.addService(body);
     return generatedBooking;
   }
 

@@ -31,18 +31,9 @@ export class ServiceService {
     };
   }
 
-  async addService(
-    title: string,
-    description: string,
-    price: number,
-    availability: {
-      dayOfWeek: number;
-      startTime: string;
-      endTime: string;
-    },
-  ) {
+  async addService(body) {
+    const { title, description, price, availability } = body;
     let service;
-    //FIXME: validation
     const errors = this.ServiceValidation(
       title,
       description,
@@ -97,7 +88,6 @@ export class ServiceService {
   async updateOne(id, body) {
     const { title, description, price, availability } = body;
     let service;
-    //FIXME: validation
     const errors = this.ServiceValidation(
       title,
       description,
@@ -143,14 +133,14 @@ export class ServiceService {
     if (typeof price !== 'number' || price <= 0) {
       errors.push('Price is required and must be a positive number');
     }
-    // Check availability validation
+    // Check availability validation, overlaps ...
     if (avValidation) {
       return [...errors, this.availabilityValidation(availability)];
     }
 
     return errors;
   }
-  //FIXME: get rid of 137-233
+
   private availabilityValidation(availability) {
     const errors = [];
     // Check if availability is provided and is a boolean
@@ -233,7 +223,7 @@ export class ServiceService {
     }
     return hours24 * 60 + minutes;
   }
-
+  //FIXME: delete this
   async deleteAll() {
     let service;
 
