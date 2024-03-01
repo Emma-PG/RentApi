@@ -19,13 +19,16 @@ export class ServiceService {
       return error.message;
     }
     //FIXME: remove id
-    return services.map((serv: Service) => ({
-      id: serv.id,
-      title: serv.title,
-      description: serv.description,
-      price: serv.price,
-      availability: serv.availability,
-    }));
+    return {
+      TotalEntries: services.length,
+      data: services.map((serv: Service) => ({
+        id: serv.id,
+        title: serv.title,
+        description: serv.description,
+        price: serv.price,
+        availability: serv.availability,
+      })),
+    };
   }
 
   async addService(
@@ -140,7 +143,7 @@ export class ServiceService {
     if (typeof price !== 'number' || price <= 0) {
       errors.push('Price is required and must be a positive number');
     }
-
+    // Check availability validation
     if (avValidation) {
       return [...errors, this.availabilityValidation(availability)];
     }
