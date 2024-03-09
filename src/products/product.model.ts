@@ -12,3 +12,8 @@ export interface ProductInterface extends mongoose.Document {
   desc: string;
   price: number;
 }
+
+export const ProductModel = mongoose.model<ProductInterface>(
+  'Product',
+  ProductSchema,
+);

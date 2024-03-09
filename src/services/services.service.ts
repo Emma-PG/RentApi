@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Service } from './service.model';
 import { Model } from 'mongoose';
-import { availabilityValidation } from 'src/utils/availabilityValidation';
+import { availabilityValidation } from '../utils/availabilityValidation';
 
 @Injectable()
 export class ServiceService {
